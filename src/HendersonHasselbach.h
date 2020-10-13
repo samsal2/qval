@@ -11,10 +11,10 @@
 
 inline double hendersonHasselbach(const double kA,
                                   const double acidConcentration,
-                                  const double baseConcentration)
-{
-    //4std::cout << -log10(kA) << " " <<acidConcentration << " " << baseConcentration << "\n";
-    return -log10(kA) + log10(acidConcentration/baseConcentration);
+                                  const double baseConcentration) {
+  // 4std::cout << -log10(kA) << " " <<acidConcentration << " " <<
+  // baseConcentration << "\n";
+  return -log10(kA) + log10(acidConcentration / baseConcentration);
 }
 
 #endif /* HendersonHasselbach_h */

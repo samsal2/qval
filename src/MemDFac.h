@@ -9,31 +9,29 @@
 #ifndef MemDFac_h
 #define MemDFac_h
 
-#include <memory>
 #include <algorithm>
+#include <memory>
 
-class MemDFac
-{
-public:
-    MemDFac(std::size_t n);
-    inline const double& operator[](const std::size_t n) const;
-    
-private:
-    const std::unique_ptr<double[]> data;
+class MemDFac {
+ public:
+  MemDFac(std::size_t n);
+  inline const double& operator[](const std::size_t n) const;
+
+ private:
+  const std::unique_ptr<double[]> data;
 };
 
 MemDFac::MemDFac(std::size_t n)
-: data(std::make_unique<double[]>([&]()
-{n = std::max<std::size_t>(2, n + 1); return n;}()))
-{
-    data[0] = 1;
-    data[1] = 1;
-    for(std::size_t i = 2; i < n; i++)
-        data[i] = data[i - 1] * i;
+    : data(std::make_unique<double[]>([&]() {
+        n = std::max<std::size_t>(2, n + 1);
+        return n;
+      }())) {
+  data[0] = 1;
+  data[1] = 1;
+  for (std::size_t i = 2; i < n; i++) data[i] = data[i - 1] * i;
 }
 
-inline const double& MemDFac::operator[](const std::size_t n) const
-{
-    return data[n];
+inline const double& MemDFac::operator[](const std::size_t n) const {
+  return data[n];
 }
 #endif /* MemDFac_h */
